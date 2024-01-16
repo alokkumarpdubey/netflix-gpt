@@ -44,4 +44,53 @@
     - run the project
         npm start
 
-* 
+* Clean up and setup the project folder structure
+
+    - Delete following file 
+        App.css
+
+    - Clean your App.js file by removing all the unnecessary thing.
+
+    - Create following folders in src folder
+        1. components
+        2. utils
+
+    - Create following components in components folder using 'rafce'
+        1. Body.js
+        2. Header.js
+        3. Login.js
+        4. Browse.js 
+
+
+* Setup routing in your project 
+    - installation
+        npm i -D react-router-dom
+
+    - then setup you Body.js component like this =>
+        import React from "react";
+        import Login from "./Login";
+        import Browse from "./Browse";
+        import { RouterProvider, createBrowserRouter } from "react-router-dom";
+
+        const Body = () => {
+            const appRouter = createBrowserRouter([
+                { path: "/", element: <Login /> },
+                { path: "/browse", element: <Browse /> },
+            ]);
+
+            return (
+                <div>
+                <RouterProvider router={appRouter} />
+                </div>
+            );
+        };
+
+        export default Body;
+
+* Add some CSS to Login and Header components to look like Netflix
+
+* Validation 
+    you can use Formik library for form Validation.
+    REF : https://formik.org
+
+    
