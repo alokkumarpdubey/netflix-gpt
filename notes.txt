@@ -314,4 +314,10 @@
             });
         };
 
-* 
+BUG Fixes =>
+1. SignUp user display name and profile picture update
+2. If user is not logged in dont show browse page
+3. If user is logged in dont show login page
+
+* Fetch Movies from tmdb APIs
+
