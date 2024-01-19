@@ -314,10 +314,17 @@
             });
         };
 
-BUG Fixes =>
-1. SignUp user display name and profile picture update
-2. If user is not logged in dont show browse page
-3. If user is logged in dont show login page
+    BUG Fixes =>
+    1. SignUp user display name and profile picture update
+    2. If user is not logged in dont show browse page
+    3. If user is logged in dont show login page
+
+    Also, when Header components unmounts we need to unsubscribe this event as it is not required
+        const unsubscribe = onAuthStateChanged(auth, (user) => {
+            //..
+            //..
+        })
+        return () => unsubscribe();
 
 * Fetch Movies from tmdb APIs
 
