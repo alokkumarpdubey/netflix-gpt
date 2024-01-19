@@ -9,6 +9,7 @@ import {
 import { checkValidData } from "../utils/validate";
 import { auth } from "../utils/firebase";
 import { addUser } from "../utils/userSlice";
+import { USER_AVATAR_URL } from "../utils/constants";
 
 const Login = () => {
   const [isSignInForm, setIsSignInForm] = useState(true);
@@ -62,8 +63,7 @@ const Login = () => {
   const updateUserProfile = (user) => {
     updateProfile(user, {
       displayName: name.current.value,
-      photoURL:
-        "https://avatars.githubusercontent.com/u/41838300?s=400&u=5d81ecb5a52602d688c4d608f80f5289a109a227&v=4",
+      photoURL: USER_AVATAR_URL,
     })
       .then(() => {
         const { uid, email, displayName, photoURL } = auth.currentUser;
