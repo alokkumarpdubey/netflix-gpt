@@ -328,3 +328,68 @@
 
 * Fetch Movies from tmdb APIs
 
+    API access : https://www.themoviedb.org/settings/api
+        Create an application here, provide details and you will get the API key for access
+
+    API call in Browse Page =>
+        const getNowPlayingMovies = async () => {
+            const response = await fetch(TMDB_API_URL, TMDB_API_OPTIONS);
+            const json = await response.json();
+            console.log(json);
+        };
+
+    Note : If the API call is happening for 2 times it is because of React Strict mode in index.js
+            root.render(
+                <React.StrictMode>
+                    <App />
+                </React.StrictMode>
+            );
+
+    Create A custom hook to call movie API
+        useNowPlayingMovies.js =>
+            import { useEffect } from "react";
+            import { useDispatch } from "react-redux";
+            import { TMDB_API_OPTIONS, TMDB_API_URL } from "../utils/constants";
+            import { addNowPlayingMovies } from "../utils/movieSlice";
+
+            const useNowPlayingMovies = () => {
+                const dispatch = useDispatch();
+                const getNowPlayingMovies = async () => {
+                    const response = await fetch(TMDB_API_URL, TMDB_API_OPTIONS);
+                    const json = await response.json();
+                    dispatch(addNowPlayingMovies(json.results));
+                    console.log(json.results);
+                }
+
+                useEffect(() => {
+                    getNowPlayingMovies();
+                }, []);
+            }
+
+            export default useNowPlayingMovies;
+
+* Creating Browse component
+
+    - Design a Video Container
+        - Create subcomponent
+            1. Video Title
+            2. Video Background
+
+        - You can add embedd youtube frame like this =>
+            <div className="w-screen">
+                <iframe
+                    className="w-screen aspect-video"
+                    src={YOUTUBE_BASE_URL+trailerVideo?.key+"?&autoplay=1&mute=1"}
+                    title="YouTube video player"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture;"
+                ></iframe>
+            </div>
+
+        - call Videos API of TMDB 
+            TMDB_GET_MOVIE_VIDOE_API_URL = "https://api.themoviedb.org/3/movie/";
+        
+        - Update the store with Video trailers from above API.
+
+        - Call store data and play video in background like netflix
+
+* 

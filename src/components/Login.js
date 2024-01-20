@@ -50,6 +50,8 @@ const Login = () => {
       )
         .then((userCredential) => {
           const user = userCredential.user;
+          console.log("SIGNIN SUCCESSFULL!!!");
+          console.log("User>>> ", user)
           updateUserProfile(user);
         })
         .catch((error) => {
