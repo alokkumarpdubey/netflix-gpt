@@ -403,3 +403,82 @@
         Create Followin components
             1. Movielist
             2. MovieCard
+        
+        TMDB API REF : https://developer.themoviedb.org/reference/movie-upcoming-list
+  
+* MultiLingual App
+    - Create a language constant file
+        languageConstant.js =>
+            const lang = {
+                en: {
+                    search: "Search",
+                    gptSearchPlaceholder: "What do you want to watch today?",
+                    gptSearch: "GPT Search",                                        
+                },
+                hindi: {
+                    search: "खोज",
+                    gptSearchPlaceholder: "आज आप क्या देखना चाहते हैं?",
+                    gptSearch: "जीपीटी खोज",                                       
+                },
+                spanish: {
+                    search: "Buscar",
+                    gptSearchPlaceholder: "¿Qué quieres ver hoy?",
+                    gptSearch: "Búsqueda GPT",                    
+                },
+            };
+            export default lang;
+
+    - Create a language Object in constant file
+            constants.js =>
+                export const SUPPORTED_LANGUAGES = [
+                    { identifier: "en", value: "English" },
+                    { identifier: "hindi", value: "हिंदी" },
+                    { identifier: "spanish", value: "Española" },
+                ];
+
+    - Create a Selector for user to change language
+            <select
+                onChange={handleLanguageChange}
+                className="p-2 m-2 bg-gray-400 text-white"
+            >
+                {SUPPORTED_LANGUAGES.map((lang) => (
+                <option key={lang.identifier} value={lang.identifier}>
+                    {lang.value}
+                </option>
+                ))}
+            </select>
+
+            // onChange action for language selector 
+                const handleLanguageChange = (e) => {
+                    console.log(e.target.value);
+                    dispatch(setAppLanguage(e.target.value));
+                };
+
+    - Create a config Reducer 
+        configSlice.js => 
+            import { createSlice } from "@reduxjs/toolkit";
+            const configSlice = createSlice({
+            name: "config",
+            initialState: {
+                language: "en",
+            },
+            reducers: {
+                setAppLanguage: (state, action) => {
+                state.language = action.payload;
+                },
+            },
+            });
+            export const { setAppLanguage } = configSlice.actions;
+            export default configSlice.reducer;
+
+    - Change the labels accessing the store for language config
+        const langKey = useSelector((store) => store.config.language);
+
+            // Show labels like this =>
+            <button className="mx-2 font-bold text-white" onClick={handleSignOut}>
+                {lang[langKey].signOut}
+            </button>
+
+
+* GPT APIs
+    

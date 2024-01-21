@@ -8,8 +8,8 @@ export const TMDB_POPULAR_MOVIE_API_URL =
   "https://api.themoviedb.org/3/movie/popular?&page=1";
 export const TMDB_TOP_RATED_MOVIE_API_URL =
   "https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1";
-  export const TMDB_UPCOMING_MOVIE_API_URL =
-  "https://api.themoviedb.org/3/movie/upcoming?language=en-US&page=1"
+export const TMDB_UPCOMING_MOVIE_API_URL =
+  "https://api.themoviedb.org/3/movie/upcoming?language=en-US&page=1";
 export const TMDB_GET_MOVIE_VIDOE_API_URL =
   "https://api.themoviedb.org/3/movie/";
 
@@ -23,3 +23,12 @@ export const TMDB_API_OPTIONS = {
 };
 export const TMDB_IMAGE_PATH = "https://image.tmdb.org/t/p/w500/";
 export const YOUTUBE_BASE_URL = "https://www.youtube.com/embed/";
+
+export const NETFLIX_BG_IMAGE_URL =
+  "https://assets.nflxext.com/ffe/siteui/vlv3/594f8025-139a-4a35-b58d-4ecf8fdc507c/d3c4e455-f0bf-4003-b7cd-511dda6da82a/IN-en-20240108-popsignuptwoweeks-perspective_alpha_website_small.jpg";
+
+export const SUPPORTED_LANGUAGES = [
+  { identifier: "en", value: "English" },
+  { identifier: "hindi", value: "हिंदी" },
+  { identifier: "spanish", value: "Española" },
+];
